@@ -26,8 +26,8 @@ class Shop(models.Model):
 class Ph(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     shop = models.ForeignKey(Shop, null=True, on_delete=models.SET_NULL)
-    employee_id = models.CharField(max_length=11, blank=True)
-    employee_iks = models.IntegerField(blank=True)
+    employee_id = models.CharField(max_length=11, blank=True, unique=True)
+    employee_ifs = models.IntegerField(blank=True, unique=True)
 
 
 class Kss(models.Model):
