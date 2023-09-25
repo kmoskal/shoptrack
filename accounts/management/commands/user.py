@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 from django.core.validators import validate_email
-from django.utils.ipv6 import ValidationError 
+from django.utils.ipv6 import ValidationError
 from accounts.models import User
 from accounts.management.commands._private import IGNORED_USER_FIELDS, available_arguments, generate_password
 
@@ -45,13 +45,12 @@ class Command(BaseCommand):
                 self.stdout.write('User fields:')
                 # We iterate through all user fields, but skip those that we won't be modifying
                 for field in user._meta.get_fields():
-                    if hasattr(user, field.name) and field.name not in IGNORED_USER_FIELDS: 
+                    if hasattr(user, field.name) and field.name not in IGNORED_USER_FIELDS:
                         field_value = getattr(user, field.name)
 
                         while True:
                             answer = input(f'Do you want change {field.verbose_name.upper()}: {field_value}? Confirm (Y/N): ').strip().lower()
                             if answer == 'y':
-                                # dodać tutaj zmianę danych
                                 new_value = input(f'Enter new value for {field.verbose_name.upper()}: ').strip()
                                 setattr(user, field.name, new_value)
                                 user.save()
