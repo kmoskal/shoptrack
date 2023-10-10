@@ -5,14 +5,14 @@ from accounts.management.commands._private import DISTRICT, REGION, validate_sho
 
 class Command(BaseCommand):
     help = 'Create and edit shop'
-    
+
     def add_arguments(self, parser):
         parser.add_argument('--add', action='store_true', help='Add new shop')
         parser.add_argument('--edit', action='store_true', help='Edit shop')
 
     def handle(self, *args, **options):
         if options['add']:
-            shop_id = input('Enter shop ID: ').strip() 
+            shop_id = input('Enter shop ID: ').strip()
             if validate_shop_id(shop_id):
 
                 shop, created = Shop.objects.get_or_create(shop_id=shop_id.upper())
@@ -126,7 +126,7 @@ class Command(BaseCommand):
             except Shop.DoesNotExist:
                 self.stdout.write(
                         self.style.ERROR(f'Shop with ID "{shop_id}" does not exist')
-                    )                   
+                    )
 
         else:
             argument_list = available_arguments(options)
