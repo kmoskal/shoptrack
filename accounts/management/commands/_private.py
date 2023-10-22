@@ -9,7 +9,7 @@ IGNORED_DJANGO_ARGUMENTS = ['--verbosity', '--settings', '--pythonpath', '--trac
 DISTRICT = [
     'Białystok', 'Bielsko-Biała', 'Elbląg', 'Gdańsk', 'Gdynia', 'Kalisz',
     'Katowice', 'Kołobrzeg', 'Konin', 'Koszalin', 'Kraków', 'Lublin',
-    'Łomża', 'Łódź', 'Opole', 'Ostrowiec Świętokrzyski', 'Oświęcim', 
+    'Łomża', 'Łódź', 'Opole', 'Ostrowiec Świętokrzyski', 'Oświęcim',
     'Piotrków Trybunalski', 'Płock', 'Poznań', 'Pruszków', 'Radom',
     'Rybnik', 'Siedlce', 'Sosnowiec', 'Suwałki', 'Szczecin', 'Toruń',
     'Warszawa-Wschód', 'Warszawa-Zachód', 'Zamość'
@@ -42,7 +42,7 @@ def get_validate_employee_id():
             return None
         elif employee_id[:2].isalpha() and employee_id[5] == '.' and employee_id[6:].isdigit():
             return employee_id
-        else: 
+        else:
             raise ValueError('Employee ID must contain Shop ID then "." and five digits. e.g. "FA001.00001"')
 
 def search_user(object):
@@ -70,10 +70,9 @@ def search_shop(object):
             break
         try:
             shop = Shop.objects.get(shop_id=shop_id)
-            answer = input(f'Do you want add PH to {shop.shop_id}? Confirm(Y/N)').strip().lower()
+            answer = input(f'Do you want to choose {shop.shop_id}? Confirm(Y/N)').strip().lower()
             if answer == 'y':
-                shop_to_assign = shop
-                return shop_to_assign
+                return shop
             elif answer == 'n':
                 continue
 

@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 from django.db import IntegrityError
-from accounts.models import User, Ph, Shop
+from accounts.models import Ph
 from accounts.management.commands._private import search_user, search_shop, get_validate_employee_id, available_arguments
 
 
