@@ -34,16 +34,12 @@ def validate_shop_id(shop_id):
     else:
         return False
 
-def get_validate_employee_id():
-    ''' Employee ID must contain Shop ID then "." and five digits. e.g. "FA001.00001" '''
-    while True:
-        employee_id = input('Enter employee ID: ').strip().upper()
-        if employee_id == 'Q':
-            return None
-        elif employee_id[:2].isalpha() and employee_id[5] == '.' and employee_id[6:].isdigit():
-            return employee_id
-        else:
-            raise ValueError('Employee ID must contain Shop ID then "." and five digits. e.g. "FA001.00001"')
+def create_validate_employee_id(shop):
+    number = input('Enter last 5 digits from "Employee_id": ')
+    if len(number) == 5 and number.isdigit():
+        return str(shop.shop_id + '.' + number)
+    else:
+        raise ValueError('Enter five digits')
 
 def search_user(object):
     while True:
